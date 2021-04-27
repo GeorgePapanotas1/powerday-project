@@ -29,8 +29,9 @@ export default {};
 .main-content {
   margin-top: 15px;
   .inner_wrapper {
-    width: 70%;
     margin: auto;
+    max-width: 1440px;
+    min-width: 200px;
 
     .text-big-items {
       display: flex;
@@ -64,6 +65,63 @@ export default {};
     align-items: center;
     width: 65%;
     margin: auto;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .text-big-items {
+    width: 100%;
+    flex-direction: column;
+
+    .left-text {
+      margin-bottom: 0 !important;
+    }
+    .right-text {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .hashes {
+    display: grid !important;
+    grid-template-columns: 33% 33% 33%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .hashes {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 466px) {
+  .content-wrapper {
+    img {
+      margin-top: 25px;
+    }
+    .text-big-items {
+      margin-top: 30px !important;
+      p {
+        font-size: 25px !important;
+      }
+    }
+
+    .hashes {
+      margin-top: 30px !important;
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 332px) {
+  .text-big-items {
+    p {
+      font-size: 18px !important;
+    }
   }
 }
 </style>

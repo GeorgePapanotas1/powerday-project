@@ -2,8 +2,8 @@
   <div id="app">
     <div id="nav">
       <div class="main-nav">
-        <img src="../public/LRCMYK.png" alt="" />
-        <img src="../public/PowerDayLogo.png" alt="" />
+        <img class="lr-logo" src="../public/LRCMYK.png" alt="" />
+        <img class="powerday-logo" src="../public/PowerDayLogo.png" alt="" />
         <div class="lang-swicher">
           <router-link to="/">Gr</router-link> /
           <router-link to="/about">En</router-link>
@@ -51,7 +51,7 @@ body {
     margin-top: 30px;
     position: relative;
     img {
-      width: 20% !important;
+      width: 300px;
       position: relative;
       bottom: -4px;
     }
@@ -63,6 +63,44 @@ body {
 
     &.router-link-exact-active {
       font-weight: bold;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main-nav {
+    flex-direction: column;
+    div {
+      margin: 15px;
+    }
+    img {
+      margin: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .powerday-logo {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .powerday-logo {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .powerday-logo {
+    width: 200px;
+  }
+
+  .colored-boxes {
+    img {
+      width: 200px !important;
+      position: relative;
+      bottom: -4px;
     }
   }
 }
