@@ -1,9 +1,9 @@
 <template>
   <div class="main-countdown-container">
     <div class="grid-container">
-      <p class="heading">Days</p>
-      <p class="heading">Hours</p>
-      <p class="heading">Minutes</p>
+      <p class="heading days-heading">Days</p>
+      <p class="heading hours-heading">Hours</p>
+      <p class="heading mins-heading">Minutes</p>
       <div class="container day-counter">
         <div class="single-char">{{ this.days[0] }}</div>
         <div class="single-char">{{ this.days[1] }}</div>
@@ -94,15 +94,16 @@ export default {
   background-color: gray;
 }
 .main-countdown-container {
-  width: 50%;
+  //   width: 50%;
   margin: auto;
+  max-width: 1000px;
   text-align: center;
   .grid-container {
     display: grid;
     grid-template-columns: 20% 20% 20%;
     justify-content: center;
     row-gap: 16px;
-    column-gap: 20px;
+    column-gap: 1.5em;
 
     .heading {
       color: var(--light-white);
@@ -120,41 +121,94 @@ export default {
         padding: 3px;
         border-radius: 8px;
         width: 60px;
+        height: 60px;
+        font-size: 55px;
+        margin: 0 10px;
       }
     }
   }
 }
 
-@media screen and (max-width: 1600px) {
-  .main-countdown-container {
-    width: 65%;
-  }
-}
+@media screen and (max-width: 800px) {
+  .grid-container {
+    column-gap: 2em !important;
 
-@media screen and (max-width: 1600px) {
-  .main-countdown-container {
-    width: 80%;
-    .container {
-      font-size: 60px !important;
-
-      .single-char {
-        width: 40px;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .main-countdown-container {
-    width: 100%;
-
-    .container {
+    .single-char {
+      width: 45px !important;
+      min-width: 45px;
+      height: 45px !important;
+      min-height: 45px;
       font-size: 40px !important;
+      margin: 0 10px;
+    }
+  }
+}
 
-      .single-char {
-        width: 30px !important;
-        margin: 5px !important;
-      }
+@media screen and (max-width: 600px) {
+  .grid-container {
+    column-gap: 3em !important;
+
+    .single-char {
+      width: 45px !important;
+      min-width: 45px;
+      height: 45px !important;
+      min-height: 45px;
+      font-size: 40px !important;
+      margin: 0 5px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 466px) {
+  .main-countdown-container {
+    padding-top: 22px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .grid-container {
+    column-gap: 4em !important;
+    padding: 0 30px;
+    .single-char {
+      width: 45px !important;
+      min-width: 45px;
+      height: 45px !important;
+      min-height: 45px;
+      font-size: 40px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 371px) {
+  .grid-container {
+    grid-template-columns: 100% !important;
+    row-gap: 7px !important;
+    .container {
+      justify-content: center !important;
+    }
+    .day-counter {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .hour-counter {
+      grid-column: 1;
+      grid-row: 4;
+    }
+    .min-counter {
+      grid-column: 1;
+      grid-row: 6;
+    }
+    .days-heading {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .hours-heading {
+      grid-column: 1;
+      grid-row: 3;
+    }
+    .mins-heading {
+      grid-column: 1;
+      grid-row: 5;
     }
   }
 }
