@@ -1,24 +1,26 @@
 <template>
   <div class="main-countdown-container">
-    <div class="grid-container">
-      <p class="heading days-heading">Days</p>
-      <p class="heading hours-heading">Hours</p>
-      <p class="heading mins-heading">Minutes</p>
-      <div class="container day-counter">
-        <div class="single-char">{{ this.days[0] }}</div>
-        <div class="single-char">{{ this.days[1] }}</div>
-      </div>
-      <div class="container hour-counter">
-        <div class="single-char">{{ this.hours[0] }}</div>
-        <div class="single-char">{{ this.hours[1] }}</div>
-      </div>
+    <transition name="fade">
+      <div class="grid-container" v-if="!countdownFinished">
+        <p class="heading days-heading">{{ $t("days") }}</p>
+        <p class="heading hours-heading">{{ $t("hours") }}</p>
+        <p class="heading mins-heading">{{ $t("minutes") }}</p>
+        <div class="container day-counter">
+          <div class="single-char">{{ this.days[0] }}</div>
+          <div class="single-char">{{ this.days[1] }}</div>
+        </div>
+        <div class="container hour-counter">
+          <div class="single-char">{{ this.hours[0] }}</div>
+          <div class="single-char">{{ this.hours[1] }}</div>
+        </div>
 
-      <div class="container min-counter">
-        <div class="single-char">{{ this.minutes[0] }}</div>
-        <div class="single-char">{{ this.minutes[1] }}</div>
+        <div class="container min-counter">
+          <div class="single-char">{{ this.minutes[0] }}</div>
+          <div class="single-char">{{ this.minutes[1] }}</div>
+        </div>
       </div>
-    </div>
-    <!-- <div class="count-numbers"></div> -->
+      <!-- <div class="count-numbers"></div> -->
+    </transition>
   </div>
 </template>
 
@@ -26,17 +28,32 @@
 export default {
   data: function () {
     return {
-      target_date: new Date(2021, 4, 9, 20, 0),
+      //   target_date: new Date(2021, 4, 9, 20, 0),
+      target_date: new Date(2021, 3, 27, 16, 39),
       days: "00",
       hours: "00",
       minutes: "00",
       seconds: "00",
+      changed: false,
+      countdownFinished: false,
     };
   },
   mounted: function () {
-    window.setInterval(() => {
+    const itteration = window.setInterval(() => {
       console.log("RUnning");
-      this.calcDifferenceRemaining();
+      if (
+        this.changed &&
+        this.days === "00" &&
+        this.hours === "00" &&
+        this.minutes === "00" &&
+        this.seconds === 0
+      ) {
+        clearInterval(itteration);
+        this.countdownFinished = true;
+      } else {
+        this.changed = true;
+        this.calcDifferenceRemaining();
+      }
     }, 1000);
   },
   methods: {
@@ -90,6 +107,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 .home {
   background-color: gray;
 }
@@ -98,6 +123,7 @@ export default {
   margin: auto;
   max-width: 1000px;
   text-align: center;
+  padding: 20px 0;
   .grid-container {
     display: grid;
     grid-template-columns: 20% 20% 20%;

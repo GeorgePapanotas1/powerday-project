@@ -4,7 +4,7 @@
       <div class="content-wrapper">
         <img src="../../public/main_img.png" alt="" />
         <div class="text-big-items">
-          <p class="left-text">Celebrating Choices</p>
+          <p class="left-text">{{ $t("bottom_text") }}</p>
           <p class="right-text">09.05 | 20:00</p>
         </div>
 
@@ -68,9 +68,9 @@ export default {};
   }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 860px) {
   .text-big-items {
-    width: 100%;
+    width: 100% !important;
     flex-direction: column;
 
     .left-text {
@@ -96,7 +96,7 @@ export default {};
   }
 }
 
-@media screen and (max-width: 466px) {
+@media screen and (max-width: 575px) {
   .content-wrapper {
     img {
       margin-top: 25px;
@@ -117,10 +117,18 @@ export default {};
   }
 }
 
-@media screen and (max-width: 332px) {
+@media screen and (max-width: 425px) {
   .text-big-items {
-    p {
-      font-size: 18px !important;
+    p.left-text {
+      font-size: 24px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .text-big-items {
+    p.left-text {
+      font-size: 16px !important;
     }
   }
 }
